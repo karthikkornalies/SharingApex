@@ -38,7 +38,7 @@ public with sharing class TerritorySharing {
 
     }
 
-    public void fillUserToTerritoriesMap() {
+    public void launchSharing() {
         List<TerrUser__c> terrUsers = [SELECT name, Territory__r.name, Territory__r.id, User__r.name, User__r.id
                                        FROM TerrUser__c];
 

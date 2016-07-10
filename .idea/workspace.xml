@@ -23,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TerritorySharing.cls" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TerritorySharing.cls" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/classes/TerritorySharing.cls">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="42" column="57" selection-start-line="41" selection-start-column="7" selection-end-line="42" selection-end-column="57" />
+            <state relative-caret-position="-374">
+              <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -53,7 +53,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccountShareHandler.cls" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AccountShareHandler.cls" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/classes/AccountShareHandler.cls">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
@@ -114,11 +114,11 @@
       <list>
         <option value="$PROJECT_DIR$/src/classes/TerritorySharring.cls" />
         <option value="$PROJECT_DIR$/src/classes/terrSharing2.cls" />
-        <option value="$PROJECT_DIR$/src/classes/TerritorySharing.cls" />
         <option value="$PROJECT_DIR$/src/classes/SharingTriggerHandler.cls" />
         <option value="$PROJECT_DIR$/src/triggers/SharingTrigger.trigger" />
         <option value="$PROJECT_DIR$/src/triggers/AccountTrigger.trigger" />
         <option value="$PROJECT_DIR$/src/classes/AccountShareHandler.cls" />
+        <option value="$PROJECT_DIR$/src/classes/TerritorySharing.cls" />
       </list>
     </option>
   </component>
@@ -676,12 +676,12 @@
       <option name="presentableId" value="Default" />
       <updated>1467969773881</updated>
       <workItem from="1467969781983" duration="10792000" />
-      <workItem from="1467988737231" duration="62705000" />
+      <workItem from="1467988737231" duration="62883000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73497000" />
+    <option name="totallyTimeSpent" value="73675000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -770,14 +770,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/TerritorySharing.cls">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="42" column="57" selection-start-line="41" selection-start-column="7" selection-end-line="42" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/AccountShareHandler.cls-meta.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -814,6 +806,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/TerritorySharing.cls">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-374">
+          <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
           <folding />
         </state>
       </provider>
