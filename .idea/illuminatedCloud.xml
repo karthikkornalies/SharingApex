@@ -6,8 +6,13 @@
         <IlluminatedCloudConnection>
           <option name="buildSuccessDatesBySourceRootRelativePath">
             <map>
-              <entry key="CLASSES/TERRITORYSHARING.CLS" value="1468065298338" />
+              <entry key="CLASSES/ACCOUNTSHAREHANDLER.CLS" value="1468171457920" />
+              <entry key="CLASSES/SHARINGTRIGGERHANDLER.CLS" value="1468154282307" />
+              <entry key="CLASSES/TERRITORYSHARING.CLS" value="1468149298629" />
               <entry key="CLASSES/TERRITORYSHARRING.CLS" value="1467980299664" />
+              <entry key="CLASSES/TERRSHARING2.CLS" value="1468096727612" />
+              <entry key="TRIGGERS/ACCOUNTTRIGGER.TRIGGER" value="1468169448429" />
+              <entry key="TRIGGERS/SHARINGTRIGGER.TRIGGER" value="1468162845569" />
             </map>
           </option>
           <option name="defaultModuleName" value="untitled2" />
