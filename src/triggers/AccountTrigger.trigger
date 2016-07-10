@@ -19,11 +19,11 @@ trigger AccountTrigger on Account (after insert, after update, after delete) {
         }
     }
 
-  /*  if(Trigger.isDelete) {
+    if(Trigger.isDelete) {
         for(Account acc:Trigger.old){
-            new AccountShareHandler().handlleAccountShare(acc.id);
+            new AccountShareHandler().deleteAccountShare(acc.id);
         }
 
-    }*/
-
+    }
+////
 }
