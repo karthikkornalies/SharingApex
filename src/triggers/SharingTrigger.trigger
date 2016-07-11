@@ -7,9 +7,8 @@ trigger SharingTrigger on TerrUser__c (after insert, after update, after delete)
     if(Trigger.isInsert) {
         System.debug('insert trigger');
         for(TerrUser__c terrUser: Trigger.new) {
-            //SetUserTerritory.shareTerrUser(terrUser.User__c);
             new SharingTriggerHandler().launchSharing(terrUser.User__c);
-            ////
+
         }
 
     }

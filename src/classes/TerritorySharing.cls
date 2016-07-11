@@ -3,6 +3,7 @@
  */
 
 public with sharing class TerritorySharing {
+
     private List<User> users;
     private List<territory__c> subTerritories;
     private Map<Id, List<Id>> userToTerritoryMap;
@@ -13,6 +14,7 @@ public with sharing class TerritorySharing {
     private List<ContactShare> conShareList;
     private Map<Id,list<Territory__c>> parToChidTerrsMap;
     private List<Territory__c>  AllTers;
+    Map<Id,List<Account>> territoryMap;
 
 
     public TerritorySharing() {
@@ -25,11 +27,17 @@ public with sharing class TerritorySharing {
         accSharesList = new List<AccountShare>();
         refShareList = new List<Reference__Share>();
         conShareList = new List<ContactShare>();
+
         AllTers=[SELECT id,name, (SELECT id,name FROM childTerritorys__r)FROM Territory__c];
-        for(Territory__c rr:AllTers){
-            System.debug('id :'+rr.id+ ' '+ rr.name );
-        }
         parToChidTerrsMap=new Map<id,List<Territory__c>>();
+
+        List<Territory__c> allTerritories=[SELECT id,name,(SELECT id,name from Accounts__r) from Territory__c];
+            territoryMap = new Map<Id,List<Account>>();
+        for(Territory__c tr:allTerritories){
+
+            territoryMap.put(tr.id,tr.Accounts__r);
+
+        }
         for(Territory__c r:AllTers){
                 parToChidTerrsMap.put(r.id,r.childTerritorys__r);
 
@@ -64,9 +72,9 @@ public with sharing class TerritorySharing {
             If (subTerritories.size() != 0) fillTerritoryForCurentUser( subTerritories,   toMapTerritories );
             //заносим в мапуі
             userToTerritoryMap.put(t.user__r.Id,toMapTerritories);
-
+/*
             System.debug(t.user__r.name + ' :'+t.name+ ' :'+ userToTerritoryMap.get(t.user__r.Id));
-            System.debug(userToTerritoryMap.get(t.user__r.id).size());
+            System.debug(userToTerritoryMap.get(t.user__r.id).size());*/
 
         }
         setTerritorySharing();
@@ -101,7 +109,7 @@ public with sharing class TerritorySharing {
         terrUserShr.UserOrGroupId = userId;
         terrUserShr.AccessLevel = 'Read';
         TerrUser__c rrr = [Select id,name from TerrUser__c where id=:t.id];
-        System.debug('id '+ rrr.id  + rrr.name);
+       /* System.debug('id '+ rrr.id  + rrr.name);*/
 
         terrUserShareList.add(terrUserShr);
 
@@ -128,8 +136,9 @@ public with sharing class TerritorySharing {
         Set<id> usersId=userToTerritoryMap.keySet();
         for(Id idUser:usersId){
             for(Id terrId: userToTerritoryMap.get(idUser)){
-                List<Account> accs = [SELECT name,Id FROM Account
-                                      WHERE territory__r.id=:terrId];
+                List<Account> accs = territoryMap.get(terrId);
+                /*List<Account> accs = [SELECT name,Id FROM Account
+                                      WHERE territory__r.id=:terrId];*/
                 if(accs.size()!=0){
                     for(Account ac:accs){
                         AccountShare accShare =new AccountShare();
@@ -149,15 +158,16 @@ public with sharing class TerritorySharing {
     }
 
     public void  setContactsSharing(){
-        List<Territory__c> allTerritories=[SELECT id,name,(SELECT id,name from Accounts__r) from Territory__c];
+   /*     List<Territory__c> allTerritories=[SELECT id,name,(SELECT id,name from Accounts__r) from Territory__c];
         Map<Id,List<Account>> territoryMap = new Map<Id,List<Account>>();
         for(Territory__c tr:allTerritories){
 
                 territoryMap.put(tr.id,tr.Accounts__r);
 
         }
-
+*/
         List<Account> allAccounts=[SELECT id,name,(SELECT id,name,Contact__r.Id,Account__r.Id from Reference__r) from Account];
+
         Map<Id,List<Reference__c>> referenceMap = new Map<Id,List<Reference__c>>();
         for(Account an:allAccounts){
 
@@ -187,6 +197,8 @@ public with sharing class TerritorySharing {
 
                                 conShare.ContactId=r.Contact__r.Id;
                                 conShare.UserOrGroupId = idUser;
+                               /* System.debug('idcontact from reference'+r.Contact__r.id);
+                                System.debug('Userid'+idUser);*/
                                 conShare.ContactAccessLevel='read';
 //////////////
                                 refShare.ParentId = r.id;
@@ -211,9 +223,9 @@ public with sharing class TerritorySharing {
     public void updateSharing(){
         try {
             upsert terrShareList;
-            User u = [SELECT id,name FROM User WHERE name =:'harkkievreg User'];
+           /* User u = [SELECT id,name FROM User WHERE name =:'harkkievreg User'];
             System.debug('User name:' + u.name + ' id:'+ u.id);
-            System.debug('teruser shares: '+ terrShareList);//
+            System.debug('teruser shares: '+ terrShareList);//*/
             upsert terrUserShareList;
             upsert accSharesList;
             upsert conShareList;
@@ -225,19 +237,6 @@ public with sharing class TerritorySharing {
     public  void deleteAllAccess(Id user) {
         List<ContactShare> contactShares = [SELECT id,ContactId,UserOrGroupId FROM ContactShare WHERE UserOrGroupId = :user];
         delete contactShares;
-        System.debug('Contact sheres'+ contactShares);
-        user r = [SELECT id,name from user where name=:'harkkievreg User'];
-        List<Contact> l = new List<Contact>();
-        System.debug('harkievreg user' + r.name + r.id);
-        for(ContactShare c:contactShares){
-            //System.debug('parentid' + c.ContactId + ' ' +'userorgroup '+c.UserOrGroupId);
-            Contact cs = [select id,name from Contact where id=:c.ContactId];
-            l.add(cs);
-        }
-
-        for(Contact s: l){
-            System.debug('contact name' + s.name + s.id);
-        }
 
         List<Reference__Share> referencesShares = [SELECT id FROM Reference__Share WHERE UserOrGroupId = :user AND RowCause = 'Manual'];
         delete referencesShares;

@@ -127,11 +127,20 @@ public with sharing class SharingTriggerHandler {
 
     public void  setAccountsSharing(){
 
+        List<Territory__c> allTerritories=[SELECT id,name,(SELECT id,name from Accounts__r) from Territory__c];
+        Map<Id,List<Account>> territoryMap = new Map<Id,List<Account>>();
+        for(Territory__c tr:allTerritories){
+
+            territoryMap.put(tr.id,tr.Accounts__r);
+
+        }
+
         Set<id> usersId=userToTerritoryMap.keySet();
         for(Id idUser:usersId){
             for(Id terrId: userToTerritoryMap.get(idUser)){
-                List<Account> accs = [SELECT name,Id FROM Account
-                WHERE territory__r.id=:terrId];
+                List<Account> accs = territoryMap.get(terrId);
+               /* List<Account> accs = [SELECT name,Id FROM Account
+                WHERE territory__r.id=:terrId];*/
                 if(accs.size()!=0){
                     for(Account ac:accs){
                         AccountShare accShare =new AccountShare();
@@ -230,13 +239,14 @@ public with sharing class SharingTriggerHandler {
     public  void deleteAllAccess(Id user) {
         List<ContactShare> contactShares = [SELECT id,ContactId,UserOrGroupId FROM ContactShare WHERE UserOrGroupId = :user];
         delete contactShares;
-
+        System.debug(' contacts shares'+ contactShares);
+        System.debug('User form delete' + user);
         List<Reference__Share> referencesShares = [SELECT id FROM Reference__Share WHERE UserOrGroupId = :user AND RowCause = 'Manual'];
         delete referencesShares;
 
         List<AccountShare> accountShares = [SELECT id,AccountId,UserOrGroupId FROM AccountShare WHERE UserOrGroupId = :user AND RowCause = 'Manual'];
         delete accountShares;
-
+        System.debug(' account shares'+accountShares);
         List<Territory__Share> terrsShares = [SELECT id FROM Territory__Share WHERE UserOrGroupId = :user AND RowCause = 'Manual'];
         delete terrsShares;
 

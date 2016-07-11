@@ -6,13 +6,13 @@
         <IlluminatedCloudConnection>
           <option name="buildSuccessDatesBySourceRootRelativePath">
             <map>
-              <entry key="CLASSES/ACCOUNTSHAREHANDLER.CLS" value="1468178000470" />
-              <entry key="CLASSES/SHARINGTRIGGERHANDLER.CLS" value="1468154282307" />
-              <entry key="CLASSES/TERRITORYSHARING.CLS" value="1468171820521" />
+              <entry key="CLASSES/ACCOUNTSHAREHANDLER.CLS" value="1468246165371" />
+              <entry key="CLASSES/SHARINGTRIGGERHANDLER.CLS" value="1468228880079" />
+              <entry key="CLASSES/TERRITORYSHARING.CLS" value="1468254978905" />
               <entry key="CLASSES/TERRITORYSHARRING.CLS" value="1467980299664" />
               <entry key="CLASSES/TERRSHARING2.CLS" value="1468096727612" />
-              <entry key="TRIGGERS/ACCOUNTTRIGGER.TRIGGER" value="1468178019201" />
-              <entry key="TRIGGERS/SHARINGTRIGGER.TRIGGER" value="1468162845569" />
+              <entry key="TRIGGERS/ACCOUNTTRIGGER.TRIGGER" value="1468243549633" />
+              <entry key="TRIGGERS/SHARINGTRIGGER.TRIGGER" value="1468226423779" />
             </map>
           </option>
           <option name="defaultModuleName" value="untitled2" />
@@ -842,5 +842,10 @@
       </map>
     </option>
     <option name="selectedConnectionIndex" value="0" />
+    <option name="soqlQuerySettings">
+      <SoqlQuerySettings>
+        <option name="resultsDividerLocation" value="124" />
+      </SoqlQuerySettings>
+    </option>
   </component>
 </project>
